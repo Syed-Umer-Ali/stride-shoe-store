@@ -9,7 +9,7 @@ const FeaturedPromo = () => {
                     {/* Background Image */}
                     <div className="absolute inset-0">
                         <img
-                            src="/hero-banner.png"
+                            src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
                             alt="Midnight Collection"
                             className="w-full h-full object-cover object-center"
                         />

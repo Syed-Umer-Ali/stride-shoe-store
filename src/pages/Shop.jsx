@@ -1,21 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { products } from '../data/products';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { Heart } from 'lucide-react';
 
 const Shop = () => {
     const [filter, setFilter] = useState('All');
+    const [searchParams] = useSearchParams();
+    const searchQuery = searchParams.get('search') || '';
     const categories = ['All', ...new Set(products.map(p => p.category))];
 
-    const filteredProducts = filter === 'All'
+    let filteredProducts = filter === 'All'
         ? products
         : products.filter(p => p.category === filter);
+
+    // Apply search filter
+    if (searchQuery) {
+        filteredProducts = filteredProducts.filter(p =>
+            p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            p.category.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+    }
 
     return (
         <div className="bg-white pt-24 pb-16 sm:pt-32 sm:pb-24">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-10">
-                    <h2 className="text-3xl font-bold tracking-tight text-gray-900">All Collections</h2>
+                    <div>
+                        <h2 className="text-3xl font-bold tracking-tight text-gray-900">
+                            {searchQuery ? `Search Results for "${searchQuery}"` : 'All Collections'}
+                        </h2>
+                        {searchQuery && (
+                            <p className="mt-2 text-sm text-gray-500">
+                                Found {filteredProducts.length} {filteredProducts.length === 1 ? 'product' : 'products'}
+                            </p>
+                        )}
+                    </div>
 
                     <div className="mt-4 md:mt-0 flex space-x-2 overflow-x-auto pb-2 md:pb-0">
                         {categories.map(cat => (
@@ -23,8 +42,8 @@ const Shop = () => {
                                 key={cat}
                                 onClick={() => setFilter(cat)}
                                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors whitespace-nowrap ${filter === cat
-                                        ? 'bg-black text-white'
-                                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                    ? 'bg-black text-white'
+                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                                     }`}
                             >
                                 {cat}

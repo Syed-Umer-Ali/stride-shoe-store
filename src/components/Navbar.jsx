@@ -1,15 +1,27 @@
 import React, { useState } from 'react';
 import { ShoppingBag, Search, Menu, X } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 
 const Navbar = () => {
     const { cartCount } = useCart();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [showSearch, setShowSearch] = useState(false);
     const location = useLocation();
+    const navigate = useNavigate();
 
     const isActive = (path) => {
         return location.pathname === path ? 'text-black' : 'text-gray-500 hover:text-gray-900';
+    };
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        if (searchQuery.trim()) {
+            navigate(`/shop?search=${encodeURIComponent(searchQuery)}`);
+            setShowSearch(false);
+            setSearchQuery('');
+        }
     };
 
     return (
@@ -28,7 +40,10 @@ const Navbar = () => {
                     </div>
 
                     <div className="flex items-center space-x-4">
-                        <button className="text-gray-400 hover:text-gray-900 transition-colors">
+                        <button
+                            onClick={() => setShowSearch(!showSearch)}
+                            className="text-gray-400 hover:text-gray-900 transition-colors"
+                        >
                             <Search className="h-5 w-5" />
                         </button>
                         <Link to="/cart" className="text-gray-400 hover:text-gray-900 transition-colors relative">
@@ -47,6 +62,30 @@ const Navbar = () => {
                         </button>
                     </div>
                 </div>
+
+                {/* Search Bar */}
+                {showSearch && (
+                    <div className="py-4 border-t border-gray-100">
+                        <form onSubmit={handleSearch} className="max-w-md mx-auto">
+                            <div className="relative">
+                                <input
+                                    type="text"
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                    placeholder="Search for sneakers..."
+                                    className="w-full px-4 py-2 pr-10 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
+                                    autoFocus
+                                />
+                                <button
+                                    type="submit"
+                                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-900"
+                                >
+                                    <Search className="h-5 w-5" />
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                )}
             </div>
 
             {/* Mobile menu */}

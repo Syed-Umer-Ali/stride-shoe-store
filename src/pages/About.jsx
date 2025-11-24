@@ -34,19 +34,9 @@ const About = () => {
 
     const team = [
         {
-            name: 'Alex Chen',
-            role: 'Founder & CEO',
-            image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80'
-        },
-        {
-            name: 'Sarah Martinez',
-            role: 'Head of Design',
-            image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80'
-        },
-        {
-            name: 'James Wilson',
-            role: 'Chief Technology Officer',
-            image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80'
+            name: 'Umer Ali',
+            role: 'CEO & Founder',
+            image: '/ceo-photo.jpg'
         }
     ];
 
@@ -142,19 +132,19 @@ const About = () => {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center">
                         <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-                            Meet the Team
+                            Meet the CEO & Founder
                         </h2>
                         <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
                             The passionate people behind STRIDE.
                         </p>
                     </div>
 
-                    <div className="mt-16 grid gap-12 lg:grid-cols-3 lg:gap-8">
+                    <div className="mt-16 flex justify-center">
                         {team.map((member) => (
                             <div key={member.name} className="text-center">
                                 <div className="space-y-4">
                                     <img
-                                        className="mx-auto h-40 w-40 rounded-full object-cover"
+                                        className="mx-auto h-48 w-48 rounded-full object-cover shadow-xl"
                                         src={member.image}
                                         alt={member.name}
                                     />

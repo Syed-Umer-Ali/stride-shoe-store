@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useCart } from '../context/CartContext';
-import { Trash2, Plus, Minus } from 'lucide-react';
+import { Trash2, Plus, Minus, CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Cart = () => {
-    const { cartItems, removeFromCart, updateQuantity, cartTotal } = useCart();
+    const { cartItems, removeFromCart, updateQuantity, cartTotal, clearCart } = useCart();
+    const [showSuccess, setShowSuccess] = useState(false);
+
+    const handleCheckout = () => {
+        setShowSuccess(true);
+        setTimeout(() => {
+            clearCart();
+            setShowSuccess(false);
+        }, 2000);
+    };
 
     if (cartItems.length === 0) {
         return (
@@ -20,6 +29,14 @@ const Cart = () => {
 
     return (
         <div className="bg-white pt-24 pb-16 sm:pt-32 sm:pb-24">
+            {/* Success Message */}
+            {showSuccess && (
+                <div className="fixed top-20 left-1/2 transform -translate-x-1/2 z-50 bg-green-500 text-white px-6 py-3 rounded-full shadow-lg flex items-center space-x-2">
+                    <CheckCircle className="h-5 w-5" />
+                    <span className="font-medium">Order placed successfully!</span>
+                </div>
+            )}
+
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h1 className="text-3xl font-extrabold tracking-tight text-gray-900">Shopping Cart</h1>
 
@@ -96,6 +113,10 @@ const Cart = () => {
                                 <dt className="text-sm text-gray-600">Subtotal</dt>
                                 <dd className="text-sm font-medium text-gray-900">${cartTotal.toFixed(2)}</dd>
                             </div>
+                            <div className="flex items-center justify-between">
+                                <dt className="text-sm text-gray-600">Shipping</dt>
+                                <dd className="text-sm font-medium text-gray-900">Free</dd>
+                            </div>
                             <div className="flex items-center justify-between border-t border-gray-200 pt-4">
                                 <dt className="text-base font-medium text-gray-900">Order total</dt>
                                 <dd className="text-base font-medium text-gray-900">${cartTotal.toFixed(2)}</dd>
@@ -103,9 +124,15 @@ const Cart = () => {
                         </dl>
 
                         <div className="mt-6">
-                            <button className="w-full bg-black border border-transparent rounded-full shadow-sm py-3 px-4 text-base font-medium text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-black transition-colors">
+                            <button
+                                onClick={handleCheckout}
+                                className="w-full bg-black border border-transparent rounded-full shadow-sm py-3 px-4 text-base font-medium text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-black transition-colors"
+                            >
                                 Checkout
                             </button>
+                            <p className="mt-4 text-xs text-center text-gray-500">
+                                This is a demo. No real payment will be processed.
+                            </p>
                         </div>
                     </section>
                 </div>

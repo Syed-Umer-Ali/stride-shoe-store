@@ -5,27 +5,27 @@ import { ArrowRight } from 'lucide-react';
 const Hero = () => {
     return (
         <div className="relative h-screen w-full overflow-hidden">
-            {/* Background Image */}
+            {/* Background Image - Classic Sneaker */}
             <div className="absolute inset-0">
                 <img
-                    src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+                    src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
                     alt="Premium Sneaker Collection"
                     className="w-full h-full object-cover object-center"
                 />
-                {/* Overlay gradient for text readability */}
-                <div className="absolute inset-0 bg-gradient-to-r from-indigo-900/80 via-purple-900/60 to-pink-900/40"></div>
+                {/* Overlay gradient - Amber/Brown theme matching the shoe */}
+                <div className="absolute inset-0 bg-gradient-to-r from-amber-950/90 via-orange-900/70 to-amber-800/40"></div>
             </div>
 
             {/* Floating Shoe Element */}
             <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-1/2 h-full hidden lg:flex items-center justify-center">
                 <div className="relative animate-float">
                     <img
-                        src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                        src="https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
                         alt="Featured Sneaker"
                         className="w-full max-w-lg drop-shadow-2xl transform rotate-[-15deg] hover:rotate-[-10deg] transition-transform duration-500"
                     />
-                    {/* Glow effect */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-pink-500/20 to-purple-500/20 blur-3xl"></div>
+                    {/* Glow effect - Amber/Orange theme */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-amber-500/20 to-orange-500/20 blur-3xl"></div>
                 </div>
             </div>
 
@@ -37,7 +37,7 @@ const Hero = () => {
                     </span>
                     <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-6 leading-tight">
                         Step Into <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-300 to-purple-300">
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-orange-300">
                             The Future.
                         </span>
                     </h1>
