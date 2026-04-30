@@ -1,91 +1,92 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ShoppingBag, Zap } from 'lucide-react';
 
 const Hero = () => {
     return (
-        <div className="relative h-screen w-full overflow-hidden">
-            {/* Background Image - Classic Sneaker */}
-            <div className="absolute inset-0">
-                <img
-                    src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
-                    alt="Premium Sneaker Collection"
-                    className="w-full h-full object-cover object-center"
-                />
-                {/* Overlay gradient - Amber/Brown theme matching the shoe */}
-                <div className="absolute inset-0 bg-gradient-to-r from-amber-950/90 via-orange-900/70 to-amber-800/40"></div>
+        <section id="hero" className="relative min-h-[100vh] flex items-center justify-center overflow-hidden bg-[#050b18]">
+            {/* Background Layer (Z-0) */}
+            <div className="absolute inset-0 z-0">
+                <div className="absolute inset-0 bg-gradient-to-b from-[#050b18] via-transparent to-[#050b18] z-10" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#050b18] via-transparent to-[#050b18] z-10" />
+                <div className="absolute inset-0 bg-black/60 z-10" />
+                
+                <video 
+                    autoPlay 
+                    muted 
+                    loop 
+                    playsInline
+                    className="w-full h-full object-cover opacity-30 scale-105"
+                >
+                    <source src="https://player.vimeo.com/external/328945607.hd.mp4?s=8f6a9e1e0a9d0a9d0a9d0a9d0a9d0a9d0a9d0a9d&profile_id=175" type="video/mp4" />
+                </video>
             </div>
 
-            {/* Floating Shoe Element */}
-            <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-1/2 h-full hidden lg:flex items-center justify-center">
-                <div className="relative animate-float">
-                    <img
-                        src="https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                        alt="Featured Sneaker"
-                        className="w-full max-w-lg drop-shadow-2xl transform rotate-[-15deg] hover:rotate-[-10deg] transition-transform duration-500"
-                    />
-                    {/* Glow effect - Amber/Orange theme */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-amber-500/20 to-orange-500/20 blur-3xl"></div>
-                </div>
-            </div>
-
-            {/* Content */}
-            <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center">
-                <div className="max-w-xl">
-                    <span className="inline-block py-1 px-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-bold tracking-wider uppercase mb-6">
-                        New Collection 2025
-                    </span>
-                    <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-6 leading-tight">
-                        Step Into <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-orange-300">
-                            The Future.
-                        </span>
-                    </h1>
-                    <p className="text-lg md:text-xl text-gray-200 mb-8 leading-relaxed">
-                        Where bold design meets uncompromising comfort.
-                        Discover sneakers that make a statement.
-                    </p>
-
-                    <div className="flex flex-col sm:flex-row gap-4">
-                        <Link
-                            to="/shop"
-                            className="group inline-flex items-center justify-center px-8 py-4 text-base font-bold text-black bg-white rounded-full hover:bg-gray-100 transition-all duration-300 transform hover:scale-105"
+            <div className="container mx-auto px-6 relative z-30">
+                <div className="grid lg:grid-cols-2 gap-16 items-center min-h-[100vh] pt-[80px]">
+                    {/* Left Side: Content */}
+                    <div className="relative z-30 py-20">
+                        <motion.div
+                            initial={{ opacity: 0, x: -50 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 1 }}
                         >
-                            Explore Collection
-                            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                        </Link>
-                        <Link
-                            to="/new-arrivals"
-                            className="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white border border-white/30 rounded-full hover:bg-white/10 backdrop-blur-sm transition-all duration-300"
-                        >
-                            New Arrivals
-                        </Link>
+                            <div className="inline-flex items-center gap-4 px-4 py-2 bg-cyan-500/20 border border-cyan-500/40 mb-8 backdrop-blur-md"
+                                 style={{ clipPath: 'polygon(5% 0, 100% 0, 100% 70%, 95% 100%, 0 100%, 0% 30%)' }}
+                            >
+                                <Zap className="w-3 h-3 text-cyan-400" />
+                                <span className="text-[10px] font-black text-cyan-100 uppercase tracking-[0.5em]">Status: Authorized</span>
+                            </div>
+                            
+                            <h1 className="text-7xl md:text-11xl font-black text-[#f5f0ea] leading-[0.85] uppercase italic mb-8 drop-shadow-2xl">
+                                STRIDE <br />
+                                <span className="text-gradient">EVOLVED.</span>
+                            </h1>
+                            
+                            <p className="text-[#f5f0ea]/90 text-lg md:text-xl max-w-xl mb-12 font-bold uppercase tracking-tight leading-relaxed border-l-4 border-cyan-500 pl-6 bg-white/5 py-6">
+                                Experience the future of movement. Forged in the lab, designed for the streets.
+                            </p>
+
+                            <div className="flex flex-wrap gap-8">
+                                <Link to="/shop" className="btn-primary h-20 px-16 group relative shadow-[0_0_50px_rgba(6,182,212,0.4)]">
+                                    <ShoppingBag className="w-6 h-6 mr-4" />
+                                    <span className="tracking-[0.3em] font-black">SHOP NOW</span>
+                                </Link>
+                                <Link to="/about" className="btn-outline h-20 px-16 backdrop-blur-xl group">
+                                    <span className="tracking-[0.3em] font-black">THE LAB</span>
+                                    <ArrowRight className="ml-4 w-6 h-6 group-hover:translate-x-2 transition-transform" />
+                                </Link>
+                            </div>
+                        </motion.div>
                     </div>
+
+                    {/* Right Side: Reserved for wrapper in grid */}
+                    <div className="hidden lg:block h-full min-h-[600px]"></div>
                 </div>
+            </div>
+
+            {/* Absolute Shoe Wrap */}
+            <div className="hero-shoe-wrap">
+                <motion.div
+                    initial={{ opacity: 0, x: 100, scale: 0.8 }}
+                    animate={{ opacity: 1, x: 0, scale: 1 }}
+                    transition={{ duration: 1.5, ease: "easeOut" }}
+                >
+                    <img 
+                        src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                        alt="Hero Shoe" 
+                        className="hero-shoe-img"
+                    />
+                </motion.div>
             </div>
 
             {/* Scroll Indicator */}
-            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-                <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center pt-2">
-                    <div className="w-1 h-2 bg-white rounded-full"></div>
-                </div>
+            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 z-40">
+                <span className="text-[10px] font-black uppercase tracking-[1em] text-white/40 italic">Scroll Down</span>
+                <div className="w-[1px] h-12 bg-cyan-500 animate-pulse" />
             </div>
-
-            {/* Custom CSS for floating animation */}
-            <style jsx>{`
-        @keyframes float {
-          0%, 100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-20px);
-          }
-        }
-        .animate-float {
-          animation: float 3s ease-in-out infinite;
-        }
-      `}</style>
-        </div>
+        </section>
     );
 };
 

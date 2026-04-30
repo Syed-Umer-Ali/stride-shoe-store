@@ -1,51 +1,64 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { Mail, Send } from 'lucide-react';
 
 const Newsletter = () => {
     return (
-        <div className="bg-black">
-            <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center">
-                <div className="lg:w-0 lg:flex-1">
-                    <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-                        Sign up for our newsletter
-                    </h2>
-                    <p className="mt-3 max-w-3xl text-lg text-gray-300">
-                        Be the first to know about new drops, exclusive offers, and behind-the-scenes content.
-                    </p>
-                </div>
-                <div className="mt-8 lg:mt-0 lg:ml-8">
-                    <form className="sm:flex">
-                        <label htmlFor="email-address" className="sr-only">
-                            Email address
-                        </label>
-                        <input
-                            id="email-address"
-                            name="email-address"
-                            type="email"
-                            autoComplete="email"
-                            required
-                            className="w-full px-5 py-3 border border-transparent placeholder-gray-500 focus:ring-2 focus:ring-offset-2 focus:ring-offset-black focus:ring-white focus:border-white sm:max-w-xs rounded-full"
-                            placeholder="Enter your email"
-                        />
-                        <div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3 sm:flex-shrink-0">
-                            <button
-                                type="submit"
-                                className="w-full flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-full text-black bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black focus:ring-white transition-colors"
-                            >
-                                Notify me
-                            </button>
+        <section className="py-20 relative">
+            <div className="container mx-auto px-6">
+                <motion.div 
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    className="bg-[#12121a] p-8 md:p-16 relative overflow-hidden border border-white/10 shadow-2xl"
+                    style={{ clipPath: 'polygon(3% 0, 100% 0, 100% 80%, 97% 100%, 0 100%, 0% 20%)' }}
+                >
+                    {/* Background Glow */}
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-600/10 blur-[100px] -mr-32 -mt-32" />
+                    <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-600/10 blur-[100px] -ml-32 -mb-32" />
+
+                    <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <h2 className="text-4xl md:text-7xl font-black text-[#f5f0ea] mb-6 leading-[0.85] uppercase italic drop-shadow-2xl">
+                                JOIN THE <br />
+                                <span className="text-gradient">CRYOS PROTOCOL</span>
+                            </h2>
+                            <p className="text-[#f5f0ea]/70 text-lg font-bold leading-relaxed max-w-md uppercase tracking-tight">
+                                Synchronize your feed. Get prioritized access to limited-run chassis and engineering blueprints from Stride Labs.
+                            </p>
                         </div>
-                    </form>
-                    <p className="mt-3 text-sm text-gray-300">
-                        We care about the protection of your data. Read our{' '}
-                        <a href="#" className="text-white font-medium underline">
-                            Privacy Policy
-                        </a>
-                        .
-                    </p>
-                </div>
+
+                        <div className="w-full">
+                            <form className="relative group">
+                                <div className="absolute inset-y-0 left-6 flex items-center pointer-events-none">
+                                    <Mail className="h-5 w-5 text-slate-500 group-focus-within:text-cyan-400 transition-colors" />
+                                </div>
+                                <input
+                                    type="email"
+                                    required
+                                    className="w-full bg-white/5 border border-white/10 text-white pl-16 pr-40 py-5 focus:outline-none focus:border-cyan-500/50 transition-all placeholder:text-slate-600 uppercase tracking-widest text-xs font-bold"
+                                    placeholder="Enter Protocol Address"
+                                    style={{ clipPath: 'polygon(5% 0, 100% 0, 100% 70%, 95% 100%, 0 100%, 0% 30%)' }}
+                                />
+                                <button
+                                    type="submit"
+                                    className="absolute right-2 top-2 bottom-2 bg-cyan-600 text-white px-10 font-bold hover:bg-cyan-500 active:scale-95 transition-all flex items-center gap-2"
+                                    style={{ clipPath: 'polygon(15% 0, 100% 0, 100% 70%, 85% 100%, 0 100%, 0% 30%)' }}
+                                >
+                                    SYNC <Send className="w-4 h-4" />
+                                </button>
+                            </form>
+                            <p className="mt-6 text-[9px] text-slate-600 text-center lg:text-left uppercase tracking-[0.2em]">
+                                Encryption guaranteed. Read our <a href="#" className="text-cyan-500 hover:underline">Privacy Dossier</a>.
+                            </p>
+                        </div>
+                    </div>
+                </motion.div>
             </div>
-        </div>
+        </section>
     );
 };
 
+
 export default Newsletter;
+
